@@ -1,0 +1,66 @@
+/* Estilos generales para el cuerpo */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Estilo del contenedor principal */
+h1 {
+  text-align: center;
+  color: #6a1b9a; /* Morado pastel */
+  margin-bottom: 20px;
+}
+
+/* Estilo para los resultados */
+h2 {
+  color: #6a1b9a; /* Morado pastel */
+  margin-top: 20px;
+}
+
+p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+/* Estilo para el botón de enviar */
+button[type="submit"] {
+  background-color: #6a1b9a; /* Morado pastel */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 15px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  align:center;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #5a0a80; /* Morado más intenso */
+}
+
+.encontrar-horario-btn {
+    display: block;          /* Cambia el botón a un bloque */
+    margin: 20px auto;       /* Centra el botón horizontalmente */
+    padding: 10px 20px;      /* Agrega espacio interno al botón */
+    font-size: 16px;         /* Tamaño del texto */
+    background-color: #4CAF50; /* Color de fondo */
+    color: white;            /* Color del texto */
+    border: none;            /* Eliminar borde */
+    border-radius: 5px;      /* Bordes redondeados */
+    cursor: pointer;         /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Efecto de transición en el color de fondo */
+}
+
+.encontrar-horario-btn:hover {
+    background-color: #45a049; /* Color de fondo al pasar el cursor */
+}

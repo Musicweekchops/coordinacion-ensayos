@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordinación de Ensayos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Disponibilidad de horarios</h1>
+  <form action="/submit" method="post">
+    <label for="duracion">Duración del Ensayo (horas):</label>
+    <input type="number" name="duracion" step="1" required>
+    <br><br>
+    <div id="participants">
+      <div class="participant">
+        <label>Nombre:</label>
+        <input type="text" name="nombre[]" required>
+        <label>Disponibilidad:</label>
+        <input type="text" name="disponibilidad[]" required>
+        <button type="button" onclick="removeParticipant(this)">Eliminar</button>
+      </div>
+    </div>
+    <br>
+
+    <button type="button" onclick="addParticipant()">Agregar Participante</button>
+    <br><br>
+    <button type="submit" class="encontrar-horario-btn">Encontrar horarios</button>
+  </form>
+  <script>
+    function addParticipant() {
+      const participantDiv = document.createElement('div');
+      participantDiv.className = 'participant';
+      participantDiv.innerHTML = `
+        <label>Nombre:</label>
+        <input type="text" name="nombre[]" required>
+        <label>Disponibilidad:</label>
+        <input type="text" name="disponibilidad[]" required>
+        <button type="button" onclick="removeParticipant(this)">Eliminar</button>
+      `;
+      document.getElementById('participants').appendChild(participantDiv);
+    }
+
+    function removeParticipant(button) {
+      const participantDiv = button.parentNode;
+      document.getElementById('participants').removeChild(participantDiv);
+    }
+  </script>
+</body>
+</html>
