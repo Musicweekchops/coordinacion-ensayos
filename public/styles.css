@@ -40,7 +40,7 @@ button[type="submit"] {
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  align:center;
+  align: center;
   transition: background-color 0.3s;
 }
 
@@ -63,4 +63,26 @@ button[type="submit"]:hover {
 
 .encontrar-horario-btn:hover {
     background-color: #45a049; /* Color de fondo al pasar el cursor */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  h1, h2 {
+    font-size: 24px; /* Asegura que los títulos sean lo suficientemente grandes para ser visibles */
+    margin-top: 10px; /* Agrega un margen superior en móviles */
+  }
+
+  body {
+    padding: 10px; /* Reduce el padding en móviles */
+    height: auto; /* Ajusta la altura para evitar scroll innecesario */
+  }
+
+  p {
+    font-size: 14px; /* Reduce el tamaño de fuente para mejorar la legibilidad en pantallas pequeñas */
+  }
+
+  button[type="submit"], .encontrar-horario-btn {
+    width: 100%; /* Asegura que los botones ocupen todo el ancho disponible en móviles */
+    padding: 15px; /* Incrementa el padding para mejorar la accesibilidad */
+  }
 }
