@@ -246,7 +246,7 @@ function encontrarMejoresHorarios(participantsData, duracionMinima) {
 
     if (participantesNoCoincidentes.length > 0) {
         if (participantesNoCoincidentes.length > 1) {
-            mensajeNoCoincidentes = `Consulta si ${participantesNoCoincidentes.slice(0, -1).map(p => `${p.nombre} (${p.horario.join(', ')})`).join(', ')} y ${participantesNoCoincidentes.slice(-1).map(p => `${p.nombre} (${p.horario.join(', ')})`)} pueden hacer una excepción y acomodarse al horario... en pedir no hay engaño.`;
+            mensajeNoCoincidentes = `Consulta si ${participantesNoCoincidentes.slice(0, -1).map(p => `${p.nombre}`).join(', ')} y ${participantesNoCoincidentes.slice(-1).map(p => `${p.nombre}`)} pueden hacer una excepción y acomodarse al horario... en pedir no hay engaño.`;
         } else {
             mensajeNoCoincidentes = `Consulta si ${participantesNoCoincidentes[0].nombre} puede hacer una excepción y acomodarse al horario... en pedir no hay engaño.`;
         }
