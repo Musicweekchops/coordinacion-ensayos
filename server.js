@@ -253,7 +253,7 @@ function formatHora(hora) {
     return `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}`;
 }
 
-const port = process.env.PORT || 10000; // Usa el puerto proporcionado por Render, o 3000 en local.
+
 app.listen(port, () => {
-    console.log(`Servidor escuchando en http://localhost:${port}`);
+    console.log(`Server running on port ${port}`);
 });
