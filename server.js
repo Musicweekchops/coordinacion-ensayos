@@ -90,6 +90,19 @@ app.post('/submit', (req, res) => {
                 .pastel-button:hover {
                     background-color: #d1c4e9; /* Morado pastel */
                 }
+                .reservar-button {
+                    background-color: #7e57c2; /* Morado fuerte */
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    text-align: center;
+                    display: inline-block;
+                }
+                .reservar-button:hover {
+                    background-color: #d1c4e9; /* Morado pastel */
+                }
             </style>
         </head>
         <body>
@@ -122,6 +135,18 @@ app.post('/submit', (req, res) => {
         resultadosHTML += `
                 </tbody>
             </table>`;
+
+        // Agregar el botón "Reservar Estudio" si hay coincidencia total
+        if (noCoincidentes.length === 0) {
+            const horariosConcatenados = coincidencias.map(horario => `${horario.dia} de ${horario.horario}`).join(' y ');
+            const mensajeWhatsapp = `Hola quiero reservar el estudio el ${horariosConcatenados}`;
+            const urlWhatsapp = `https://wa.me/56996738081?text=${encodeURIComponent(mensajeWhatsapp)}`;
+
+            resultadosHTML += `
+                <div class="button-container">
+                    <a href="${urlWhatsapp}" class="reservar-button">Reservar Estudio</a>
+                </div>`;
+        }
     } else {
         resultadosHTML += `<p>No hay coincidencias disponibles.</p>`;
     }
@@ -132,7 +157,7 @@ app.post('/submit', (req, res) => {
             <ul>`;
 
         noCoincidentes.forEach(participant => {
-            resultadosHTML += `<li>${participant}</li>`;
+            resultadosHTML += `<li>${participant.nombre} (${participant.horario.join(', ')})</li>`;
         });
 
         comentariosNoCoincidentes.forEach(comentario => {
@@ -144,8 +169,6 @@ app.post('/submit', (req, res) => {
             <div class="button-container">
                 <button class="pastel-button" onclick="window.location.href='/'">Volver</button>
             </div>`;
-    } else {
-        resultadosHTML += `<h2 class="centered"><p>¡INCREÍBLE,Todos los músicos coinciden!</p></h2>`;
     }
 
     resultadosHTML += `
@@ -215,31 +238,23 @@ function encontrarMejoresHorarios(participantsData, duracionMinima) {
     }
 
     // Generar comentarios para no coincidentes
-    let participantesNoCoincidentes = Array.from(noCoincidentes);
+    let participantesNoCoincidentes = Array.from(noCoincidentes).map(nombre => {
+        let participante = participantsData.find(p => p.nombre === nombre);
+        return { nombre, horario: participante.disponibilidad };
+    });
     let mensajeNoCoincidentes;
 
     if (participantesNoCoincidentes.length > 0) {
         if (participantesNoCoincidentes.length > 1) {
-            mensajeNoCoincidentes = `Consulta si ${participantesNoCoincidentes.slice(0, -1).join(', ')} y ${participantesNoCoincidentes.slice(-1)} pueden hacer una excepción y acomodarse al horario... en pedir no hay engaño.`;
+            mensajeNoCoincidentes = `Consulta si ${participantesNoCoincidentes.slice(0, -1).map(p => `${p.nombre} (${p.horario.join(', ')})`).join(', ')} y ${participantesNoCoincidentes.slice(-1).map(p => `${p.nombre} (${p.horario.join(', ')})`)} pueden hacer una excepción y acomodarse al horario... en pedir no hay engaño.`;
         } else {
-            mensajeNoCoincidentes = `Consulta si ${participantesNoCoincidentes[0]} puede hacer una excepción y acomodarse al horario... en pedir no hay engaño.`;
+            mensajeNoCoincidentes = `Consulta si ${participantesNoCoincidentes[0].nombre} puede hacer una excepción y acomodarse al horario... en pedir no hay engaño.`;
         }
 
         comentariosNoCoincidentes.push(mensajeNoCoincidentes);
     }
 
     return { coincidencias, noCoincidentes: participantesNoCoincidentes, comentariosNoCoincidentes };
-}
-
-function parseHora(hora) {
-    let [horas, minutos] = hora.split(':').map(Number);
-    return horas + minutos / 60;
-}
-
-function formatHora(hora) {
-    let horas = Math.floor(hora);
-    let minutos = Math.round((hora - horas) * 60);
-    return `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}`;
 }
 
 function parseHora(hora) {
