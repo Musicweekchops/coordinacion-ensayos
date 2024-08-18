@@ -131,6 +131,9 @@ app.post('/submit', (req, res) => {
                     <td>${horario.participantes.join(', ')}</td>
                 </tr>`;
         });
+<div id="coincidencia-total" class="mensaje-coincidencia">
+  <strong>¡WOW, increíble todos coinciden! Esto no pasa seguido, revisa la disponibilidad y reserva cuanto antes!</strong>
+</div>
 
         resultadosHTML += `
                 </tbody>
