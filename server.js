@@ -131,17 +131,17 @@ app.post('/submit', (req, res) => {
                     <td>${horario.participantes.join(', ')}</td>
                 </tr>`;
         });
-<div id="coincidencia-total" class="mensaje-coincidencia">
-  <strong>¡WOW, increíble todos coinciden! Esto no pasa seguido, revisa la disponibilidad y reserva cuanto antes!</strong>
-</div>
-
         resultadosHTML += `
                 </tbody>
             </table>`;
 
         // Agregar el botón "Reservar Estudio" si hay coincidencia total
         if (noCoincidentes.length === 0) {
-            const horariosConcatenados = coincidencias.map(horario => `${horario.dia} de ${horario.horario}`).join(' y ');
+          resultadosHTML += `
+            <div id="coincidencia-total" class="mensaje-coincidencia">
+                <strong>¡WOW, increíble todos coinciden! Esto no pasa seguido, revisa la disponibilidad y reserva cuanto antes!</strong>
+            </div>`;
+          const horariosConcatenados = coincidencias.map(horario => `${horario.dia} de ${horario.horario}`).join(' y ');
             const mensajeWhatsapp = `Hola quiero reservar el estudio el ${horariosConcatenados}`;
             const urlWhatsapp = `https://wa.me/56996738081?text=${encodeURIComponent(mensajeWhatsapp)}`;
 
