@@ -139,7 +139,7 @@ app.post('/submit', (req, res) => {
         if (noCoincidentes.length === 0) {
           resultadosHTML += `
             <div id="coincidencia-total" class="mensaje-coincidencia">
-                <strong>¡WOW, increíble todos coinciden! Esto no pasa seguido, revisa la disponibilidad y reserva cuanto antes!</strong>
+                <strong>¡WOW, increíble todos coinciden!<br> Esto no pasa seguido, revisa la disponibilidad y reserva cuanto antes!</strong>
             </div>`;
           const horariosConcatenados = coincidencias.map(horario => `${horario.dia} de ${horario.horario}`).join(' y ');
             const mensajeWhatsapp = `Hola quiero reservar el estudio el ${horariosConcatenados}`;
