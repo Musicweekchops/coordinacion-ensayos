@@ -82,7 +82,7 @@ button[type="submit"]:hover {
   }
 
   button[type="submit"], .encontrar-horario-btn {
-    width: 100%; /* Asegura que los botones ocupen todo el ancho disponible en móviles */
+    width: 80%; /* Asegura que los botones ocupen todo el ancho disponible en móviles */
     padding: 15px; /* Incrementa el padding para mejorar la accesibilidad */
   }
 }
