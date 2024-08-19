@@ -1,6 +1,6 @@
 /* Estilos generales para el cuerpo */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Helvetica', sans-serif;
   background-color: #f5f5f5;
   color: #333;
   margin: 0px;
@@ -16,7 +16,8 @@ body {
 h1 {
   text-align: center;
   color: #6a1b9a; /* Morado pastel */
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  font-size: 40px
 }
 
 /* Estilo para los resultados */
@@ -24,10 +25,17 @@ h2 {
   color: #6a1b9a; /* Morado pastel */
   margin-top: 20px;
 }
-
+h5 {
+  text-align: center;
+  color: #4b4948; /* Morado pastel */
+  margin-top: 20px;
+  font-size: 20px
+}
 p {
   margin: 5px 0;
   font-size: 16px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 /* Estilo para el botón de enviar */
@@ -47,6 +55,17 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #5a0a80; /* Morado más intenso */
 }
+button [type="addParticipant"] {
+  background-color: #ff7f50; /* Color naranjo */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 15px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  align: center;
+}
 
 .encontrar-horario-btn {
     display: block;          /* Cambia el botón a un bloque */
@@ -64,14 +83,16 @@ button[type="submit"]:hover {
 .encontrar-horario-btn:hover {
     background-color: #45a049; /* Color de fondo al pasar el cursor */
 }
-
 /* Responsive design */
 @media (max-width: 768px) {
   h1, h2 {
-    font-size: 24px; /* Asegura que los títulos sean lo suficientemente grandes para ser visibles */
+    font-size: 28px; /* Asegura que los títulos sean lo suficientemente grandes para ser visibles */
     margin-top: 10px; /* Agrega un margen superior en móviles */
   }
-
+h5 {
+  font-size: 18px; /* Asegura que los títulos sean lo suficientemente grandes para ser visibles */
+  margin-top: 5px;
+}
   body {
     padding: 10px; /* Reduce el padding en móviles */
     height: auto; /* Ajusta la altura para evitar scroll innecesario */
@@ -79,7 +100,9 @@ button[type="submit"]:hover {
 
   p {
     font-size: 14px; /* Reduce el tamaño de fuente para mejorar la legibilidad en pantallas pequeñas */
+    text-align: left;
   }
+
 
   button[type="submit"], .encontrar-horario-btn {
     width: 80%; /* Asegura que los botones ocupen todo el ancho disponible en móviles */
