@@ -3,39 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coordina tu ensayo</title>
+  <title>Coordina tu Ensayo</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .form-container {
+      max-width: 600px;
+      margin-top:  auto;
+      margin-bottom: auto;
+      padding: 20px;
+    }
+
+    .participant {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .name-container,
+    .availability-container {
+      flex: 1; /* Ocupa el espacio disponible */
+      margin-right: 10px; /* Espacio entre los contenedores */
+    }
+
+    .name-container input,
+    .availability-container input {
+      width: 95%; /* Los inputs ocupan el 100% del contenedor */
+    }
+    .label-strong {
+      font-weight: bold; /* Hacer el texto en negrita */
+      font-size: 14px; /* Ajusta el tamaño de la fuente según sea necesario */
+    }
+    .participant button {
+      background-color: #dd3b3b;
+      color: white;
+      border: none;
+      border-radius: 5px; /* Bordes redondeados */
+      cursor: pointer;
+      padding: 5px 10px;
+      align-self: flex-end;
+      flex-shrink: 0; /* Evita que el botón se encoja */
+    }
+
+    @media (max-width: 400px) {
+      .name-container,
+      .availability-container {
+        flex-basis: 45%; /* Ocupa todo el ancho disponible en pantallas pequeñas */
+        margin-right: 5px;
+        margin-bottom: 10px;
+      }
+
+      .participant button {
+        width: 45%;
+      }
+    }
+
+    button.encontrar-horario-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #7e57c2; /* Mantener color original */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button.agregar-participante-btn {
+   width: 35%;
+   padding: 8px;
+   background-color: #ff7f50; /* El mismo color que el botón "Encontrar horarios" */
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+ }
+  </style>
 </head>
 <body>
-  <h1>COORDINA TU ENSAYO</h1>
-  <form action="/submit" method="post">
-    <label for="duracion">Duración del Ensayo (horas):</label>
-    <input type="number" name="duracion" step="1" required>
-    <br><br>
-    <div id="participants">
-      <div class="participant">
-        <label>Nombre:</label>
-        <input type="text" name="nombre[]" required>
-        <label>Disponibilidad:</label>
-        <input type="text" name="disponibilidad[]" required>
-        <button type="button" onclick="removeParticipant(this)">Eliminar</button>
-      </div>
-    </div>
-    <br>
+  <div class="form-container">
 
-    <button type="button" onclick="addParticipant()">Agregar Participante</button>
-    <br><br>
-    <button type="submit" class="encontrar-horario-btn">Encontrar horarios</button>
-  </form>
+    <h5> Nunca fue tan fácil coordinar el horario de todos los músicos</h5>
+    <p> Define la cantidad de horas del ensayo, ingresa la disponibilidad por cada múisco y nosotros encontraremos el horario perfecto.</p>
+    <p><strong> Es importante que uses este formato al ingresar la disponibilidad de cada músico</strong><br>Ej: Sabado 15:00-19:00, Martes 14:00-20:00</p>
+    <h1>COORDINA TU ENSAYO</h1>
+    <form action="/submit" method="post">
+      <label for="duracion" class="label-strong">Duración del Ensayo (horas):</label>
+      <input type="number" name="duracion" step="1" required>
+      <br><br>
+      <div id="participants">
+        <div class="participant">
+          <div class="name-container">
+            <label class="label-strong">Nombre:</label>
+            <input type="text" name="nombre[]" required>
+          </div>
+          <div class="availability-container">
+            <label class="label-strong">Disponibilidad:</label>
+            <input type="text" name="disponibilidad[]" required>
+          </div>
+          <button type="button" onclick="removeParticipant(this)"><strong>Eliminar</strong></button>
+        </div>
+      </div>
+      <br>
+      <button type="button" class="agregar-participante-btn" onclick="addParticipant()">Agregar Participante</button>
+      <br><br>
+      <button type="submit" class="encontrar-horario-btn">Encontrar horarios</button>
+    </form>
+  </div>
   <script>
     function addParticipant() {
       const participantDiv = document.createElement('div');
       participantDiv.className = 'participant';
       participantDiv.innerHTML = `
-        <label>Nombre:</label>
-        <input type="text" name="nombre[]" required>
-        <label>Disponibilidad:</label>
-        <input type="text" name="disponibilidad[]" required>
+        <div class="name-container">
+          <label>Nombre:</label>
+          <input type="text" name="nombre[]" required>
+        </div>
+        <div class="availability-container">
+          <label>Disponibilidad:</label>
+          <input type="text" name="disponibilidad[]" required>
+        </div>
         <button type="button" onclick="removeParticipant(this)">Eliminar</button>
       `;
       document.getElementById('participants').appendChild(participantDiv);
@@ -48,3 +134,4 @@
   </script>
 </body>
 </html>
+
