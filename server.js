@@ -148,7 +148,10 @@ app.post('/submit', (req, res) => {
             resultadosHTML += `
                 <div class="button-container">
                     <a href="${urlWhatsapp}" class="reservar-button">Reservar Estudio</a>
-                </div>`;
+                </div>
+                div class="button-container">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfyrECueLBj66fF3J9QJ0RfjNBHjDVfQ_cV4_bx4a4D47aChw/viewform?usp=sf_link" class="survey-button" target="_blank">Participa en nuestra encuesta</a>
+            </div>`;
         }
     } else {
         resultadosHTML += `<p>No hay coincidencias disponibles.</p>`;
@@ -171,6 +174,9 @@ app.post('/submit', (req, res) => {
             </ul>
             <div class="button-container">
                 <button class="pastel-button" onclick="window.location.href='/'">Volver</button>
+            </div>
+            div class="button-container">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfyrECueLBj66fF3J9QJ0RfjNBHjDVfQ_cV4_bx4a4D47aChw/viewform?usp=sf_link" class="survey-button" target="_blank">Participa en nuestra encuesta</a>
             </div>`;
     }
 
