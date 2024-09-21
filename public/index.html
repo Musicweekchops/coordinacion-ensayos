@@ -1,146 +1,147 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KP9218VH40"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-KP9218VH40');
-</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coordina tu Ensayo</title>
+<link rel="icon" type="image/png" href="https://arnaldoallende.com/wp-content/uploads/2024/08/fav-icon-coordinador.png">
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="styles.css">
+
   <style>
+    .container {
+      margin-top: 50px;
+    }
+    .img-container {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .img-container img {
+      max-width: 70%;
+      height: auto;
+      border-radius: 10px;
+      animation: levitate 2s ease-in-out infinite;
+    }
+
+    @keyframes levitate {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Otros estilos personalizados */
     .form-container {
-      max-width: 600px;
-      margin-top:  auto;
-      margin-bottom: auto;
-      padding: 20px;
-    }
-
-    .participant {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .name-container,
-    .availability-container {
-      flex: 1; /* Ocupa el espacio disponible */
-      margin-right: 10px; /* Espacio entre los contenedores */
-    }
-
-    .name-container input,
-    .availability-container input {
-      width: 80%; /* Los inputs ocupan el 100% del contenedor */
-    }
-    .label-strong {
-      font-weight: bold; /* Hacer el texto en negrita */
-      font-size: 12px; /* Ajusta el tamaño de la fuente según sea necesario */
+      padding: 30px;
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     }
     .participant button {
       background-color: #dd3b3b;
       color: white;
       border: none;
-      border-radius: 5px; /* Bordes redondeados */
+      border-radius: 5px;
       cursor: pointer;
       padding: 5px 10px;
-      align-self: flex-end;
-      flex-shrink: 0; /* Evita que el botón se encoja */
     }
-
-    @media (max-width: 400px) {
-      .name-container,
-      .availability-container {
-        flex-basis: 45%; /* Ocupa todo el ancho disponible en pantallas pequeñas */
-        margin-right: 5px;
-        margin-bottom: 10px;
-      }
-
-      .participant button {
-        width: 50%;
-      }
-    }
-
-    button.encontrar-horario-btn {
+    button.encontrar-horario-btn, button.agregar-participante-btn {
       width: 100%;
       padding: 10px;
-      background-color: #7e57c2; /* Mantener color original */
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
     }
+    button.encontrar-horario-btn {
+      background-color: #7e57c2;
+    }
     button.agregar-participante-btn {
-   width: 45%;
-   padding: 8px;
-   background-color: #ff7f50; /* El mismo color que el botón "Encontrar horarios" */
-   color: white;
-   border: none;
-   border-radius: 5px;
-   cursor: pointer;
- }
+      background-color: #ff7f50;
+    }
   </style>
 </head>
 <body>
-  <div class="form-container">
 
-    <h5> Nunca fue tan fácil coordinar el horario de todos los músicos</h5>
-    <p> Define la cantidad de horas del ensayo, ingresa la disponibilidad por cada músico y nosotros encontraremos el horario perfecto.</p>
-    <p><strong> Es importante que uses este formato al ingresar la disponibilidad de cada músico</strong><br>Ej: Sabado 15:00-19:00, Martes 14:00-20:00</p>
-    <h1>COORDINA TU ENSAYO</h1>
-    <form action="/submit" method="post">
-      <label for="duracion" class="label-strong">Duración del Ensayo (horas):</label>
-      <input type="number" name="duracion" step="1" required>
-      <br><br>
-      <div id="participants">
-        <div class="participant">
-          <div class="name-container">
-            <label class="label-strong">Participante:</label>
-            <input type="text" name="nombre[]" required>
-          </div>
-          <div class="availability-container">
-            <label class="label-strong"> horario participante:</label>
-            <input type="text" name="disponibilidad[]" required>
-          </div>
-          <button type="button" onclick="removeParticipant(this)"><strong>Eliminar</strong></button>
-        </div>
+  <div class="container">
+    <div class="row">
+      <!-- Imagen a la izquierda -->
+      <div class="col-md-6 img-container">
+        <img src="https://arnaldoallende.com/wp-content/uploads/2024/08/cubo.png" alt="Imagen relacionada con ensayos">
       </div>
-      <br>
-      <button type="button" class="agregar-participante-btn" onclick="addParticipant()">Agregar Participante</button>
-      <br><br>
-      <button type="submit" class="encontrar-horario-btn">Encontrar horarios</button>
-    </form>
+
+      <!-- Formulario a la derecha -->
+      <div class="col-md-6 form-container">
+
+        <form action="/submit" method="post">
+          <div class="form-group">
+            <label for="duracion" class="label-strong">Horas de ensayo</label>
+            <input type="number" class="form-control" name="duracion" step="1" required>
+          </div>
+
+          <div id="participants">
+            <div class="participant form-group">
+              <div class="row">
+                <div class="col-md-5">
+                  <label class="label-strong">¿Quién va?</label>
+                  <input type="text" class="form-control" name="nombre[]" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="label-strong">¿Horario?</label>
+                  <input type="text" class="form-control" name="disponibilidad[]" required>
+                </div>
+                <div class="col-md-1 d-flex align-items-end">
+                  <button type="button" onclick="removeParticipant(this)">X</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn agregar-participante-btn" onclick="addParticipant()">Agregar Participante</button>
+          <br><br>
+          <button type="submit" class="btn encontrar-horario-btn">Encontrar horarios</button>
+        </form>
+      </div>
+    </div>
   </div>
+
+  <!-- Bootstrap JS, Popper.js, y jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Custom JS -->
   <script>
     function addParticipant() {
       const participantDiv = document.createElement('div');
-      participantDiv.className = 'participant';
+      participantDiv.className = 'participant form-group';
       participantDiv.innerHTML = `
-        <div class="name-container">
-          <label>Nombre:</label>
-          <input type="text" name="nombre[]" required>
+        <div class="row">
+          <div class="col-md-5">
+            <label>Nombre:</label>
+            <input type="text" class="form-control" name="nombre[]" required>
+          </div>
+          <div class="col-md-5">
+            <label>Disponibilidad:</label>
+            <input type="text" class="form-control" name="disponibilidad[]" required>
+          </div>
+          <div class="col-md-2 d-flex align-items-end">
+            <button type="button" class="btn btn-danger" onclick="removeParticipant(this)">Eliminar</button>
+          </div>
         </div>
-        <div class="availability-container">
-          <label>Disponibilidad:</label>
-          <input type="text" name="disponibilidad[]" required>
-        </div>
-        <button type="button" onclick="removeParticipant(this)">Eliminar</button>
       `;
       document.getElementById('participants').appendChild(participantDiv);
     }
 
     function removeParticipant(button) {
-      const participantDiv = button.parentNode;
-      document.getElementById('participants').removeChild(participantDiv);
+      const participantDiv = button.closest('.participant');
+      participantDiv.remove();
     }
   </script>
 </body>
 </html>
-
